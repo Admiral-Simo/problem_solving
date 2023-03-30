@@ -35,11 +35,12 @@ function expand(expr) {
     if (power === 0) return "1";
     if (power === 1) return formula;
     if (power === 2)
-      return `${formula.split("+")[0]}^2+${2 * formula.split("+")[1]}*${
+      return `(${formula.split("+")[0]})^2+${2 * formula.split("+")[1]}*${
         formula.split("+")[0]
       }+${formula.split("+")[1] ** 2}`;
   }
   return -1;
 }
 
-console.log(expand("(x+33)^2"));
+console.log(expand("(-12t+43)^2"));
+// returns "144t^2-1032t+1849"
