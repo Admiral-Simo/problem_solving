@@ -19,26 +19,26 @@ function add(a, b) {
 
 function expand(expr) {
   const powerRegex = /(?<=\^)\d+/;
-  const aRegex = /(?<=\()[^)]+(?=\))/;
+  const formulaRegex = /(?<=\().+(?=\))/;
+  const aRegex = /[-]?\d+(?=\w)/;
+  const bRegex = /(?<=[a-z]).+/;
 
   // test
-  const match2 = expr.match(aRegex);
+  const match2 = expr.match(formulaRegex);
+  const aMatch = expr.match(aRegex);
   const match = expr.match(powerRegex);
+
+  // test
 
   if (match) {
     const power = parseInt(match[0]);
     const formula = match2[0];
+    console.log(formula.match(aRegex)[0]);
 
     console.log(power);
     console.log(formula);
-
-    if (power === 0) return "1";
-    if (power === 1) return formula;
-    if (power === 2)
-      return `(${formula.split("+")[0]})^2+${2 * formula.split("+")[1]}*${
-        formula.split("+")[0]
-      }+${formula.split("+")[1] ** 2}`;
   }
+
   return -1;
 }
 
